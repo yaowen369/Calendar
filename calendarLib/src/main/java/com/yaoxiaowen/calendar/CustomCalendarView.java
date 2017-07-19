@@ -7,9 +7,14 @@ import android.graphics.Paint;
 import android.support.annotation.ColorInt;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.View;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * author：yaowen on 17/7/15 12:10
@@ -136,6 +141,86 @@ public class CustomCalendarView extends View {
      * 初始化相关常量, 构造方法中调用
      */
     private void initCompute(){
+        mPaint = new Paint();
+        bgPaing = new Paint();
+        mPaint.setAntiAlias(true);   //抗锯齿
+        bgPaing.setAntiAlias(true);  //抗锯齿
+
+        map = new HashMap<>();
+
+        //标题高度
+        mPaint.setTextSize(mTextSizeMonth);
+        titleHeight = FontUtil.getFontHeight(mPaint) + 2 * mMonthSpac;
+        //星期高度
+        mPaint.setTextSize(mTextSizeWeek);
+        weekHeight = FontUtil.getFontHeight(mPaint);
+        //日期高度
+        mPaint.setTextSize(mTextSizeDay);
+        dayHeight = FontUtil.getFontHeight(mPaint)
+        //次数字体高度
+        mPaint.setTextSize(mTextSizePre);
+        preHeight = FontUtil.getFontHeight(mPaint);
+
+        //每行高度 = 行间距 + 日期字体高度 + 字间距 + 次数字体高度
+        oneHeight = mLineSpac + dayHeight + mTextSpac + preHeight;
+
+        //默认当前月份
+        String cDateStr = getMonthStr(new Date());
+        setMonth(cDateStr);
+    }
+
+    private void setMonth(String Month){
+        //在initCompute调用该方法时，就调用了一遍，这里岂不是 又重新调用了一遍
+        month = str2Date(Month);
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(new Date());
+        //获取今天是多少号
+        currentDay = calendar.get(Calendar.DAY_OF_MONTH);
+
+        Date cM = str2Date(getMonthStr(new Date()));
+        //判断是否为当月
+        if (cM.getTime() == month.getTime()) {
+            isCurrentMonth = true;
+            selectDay = currentDay;
+        }else {
+            isCurrentMonth = false;
+            selectDay = 0;
+        }
+
+        Log.i(TAG, "设置月份:" + month + "\t今天:" + currentDay + "号,是否为当前月 :"  + isCurrentMonth);
+        calendar.setTime(month);
+
+        dayOfMonth = calendar.getActualMaximum(Calendar.DAY_OF_MONTH);
+        //第一行 1号显示在什么位置 (星期几)
+        firstIndex = calendar.get(Calendar.DAY_OF_WEEK) - 1;
+        lineNum = 1;
+        //第一行能展示的天数
+        firstIndex = calendar.get(Calendar.DAY_OF_WEEK) - 1;
+        lineNum = 1;
 
     }
+
+    //获取月份标题
+    private String getMonthStr(Date month){
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy年MM月");
+        return sdf.format(month);
+    }
+
+    private Date str2Date(String str){
+        try {
+            SimpleDateFormat df = new SimpleDateFormat("yyyy年MM月");
+            return df.parse(str);
+        }catch (Exception e){
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    /****************************事件处理↓↓↓↓↓↓↓****************************/
+
+
+
+
+    /***********************接口API↓↓↓↓↓↓↓**************************/
+    private Map<Integer, Helper.DayFinish> map;
 }
