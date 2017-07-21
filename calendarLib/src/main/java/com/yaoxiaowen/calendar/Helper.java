@@ -5,7 +5,10 @@ package com.yaoxiaowen.calendar;
  */
 
 public class Helper {
-    class DayFinish{
+
+
+
+    public static class DayFinish{
         int day;
         int all;
         int finish;

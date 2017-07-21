@@ -20,7 +20,9 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+
 
 /**
  * author：yaowen on 17/7/15 12:10
@@ -113,7 +115,7 @@ public class CustomCalendarView extends View {
         mTextColorDay = a.getColor(R.styleable.CustomCalendarView_mTextColorDay, Color.GRAY);
         mTextSizeDay = a.getDimension(R.styleable.CustomCalendarView_mTextSizeDay, 70);
         mTextColorPreFinish = a.getColor(R.styleable.CustomCalendarView_mTextColorPreFinish, Color.BLUE);
-        mTextColorPreUnFinish = a.getColor(R.styleable.CustomCalendarView_mTextColorPreUnFinsih, Color.BLUE);
+        mTextColorPreUnFinish = a.getColor(R.styleable.CustomCalendarView_mTextColorPreUnFinish, Color.BLUE);
         mTextSizePre = a.getDimension(R.styleable.CustomCalendarView_mTextSizePre, 40);
         mSelectTextColor = a.getColor(R.styleable.CustomCalendarView_mSelectTextColor, Color.YELLOW);
         mCurrentBg = a.getColor(R.styleable.CustomCalendarView_mCurrentBg, Color.GRAY);
@@ -122,7 +124,15 @@ public class CustomCalendarView extends View {
             int dashPathId = a.getResourceId(R.styleable.CustomCalendarView_mCurrentBgDashPath, com.yaoxiaowen.calendar.R.array.customCalendar_currentDay_bg_DashPath);
             int[] array = getResources().getIntArray(dashPathId);
 
-            mCurrentBgDashPath = new float[]{array.length};
+            //debug info
+            StringBuilder sb = new StringBuilder();
+            sb.append("lenth=" + array.length + "\t");
+            for (int i=0;i <array.length;i++){
+                sb.append(" " + i + "=" + array[i] + "\t ");
+            }
+            Log.i(TAG, sb.toString());
+
+            mCurrentBgDashPath = new float[array.length];
             for (int i=0; i<array.length; i++){
                 mCurrentBgDashPath[i] = array[i];
             }
@@ -231,6 +241,7 @@ public class CustomCalendarView extends View {
 
         //高度 = 标题高度+星期高度+日期行数+每行高度
         float height = titleHeight + weekHeight + (lineNum*oneHeight);
+        int actualWidth = getDefaultSize(getSuggestedMinimumWidth(), widthSize);
 
         //debug 信息
         StringBuilder debugSb = new StringBuilder();
@@ -239,11 +250,11 @@ public class CustomCalendarView extends View {
                 .append("\t 每行高度:" + oneHeight)
                 .append("\t 行数:" + lineNum)
                 .append("\t 控件高度:" + height)
-                .append("\t 控件宽度:" + widthSize)
+                .append("\t 控件宽度:" + MeasureSpec.toString(actualWidth))
                 .append("\t 每行宽度:" + columnWidth);
         Log.i(TAG, debugSb.toString());
 
-        setMeasuredDimension(getDefaultSize(getSuggestedMinimumWidth(), widthSize),
+        setMeasuredDimension(actualWidth,
                 (int)height);
     }
 
@@ -441,4 +452,16 @@ public class CustomCalendarView extends View {
 
     /***********************接口API↓↓↓↓↓↓↓**************************/
     private Map<Integer, Helper.DayFinish> map;
+    public void setRenwu(String month, List<Helper.DayFinish> list){
+        setMonth(month);
+
+        if (list!=null && list.size()>0){
+            map.clear();
+            for (Helper.DayFinish finish : list){
+                map.put(finish.day, finish);
+            }
+        }
+        invalidate();
+    }// end of "setRenwu()"
+
 }

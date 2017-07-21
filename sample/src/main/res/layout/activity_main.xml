@@ -1,15 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.yaoxiaowen.demo.MainActivity">
+    tools:context="com.yaoxiaowen.demo.MainActivity"
+    android:orientation="vertical"
+    >
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="test"
+    <!--<TextView-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text="测试TextView "-->
+        <!--/>-->
+
+    <com.yaoxiaowen.calendar.CustomCalendarView
+        android:id="@+id/cal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+
+        app:mMonthRowL="@drawable/custom_calendar_row_left"
+        app:mMonthRowR="@drawable/custom_calendar_row_right"
+        app:mMonthRowSpac="20dip"
+
+        app:mTextSizeMonth="22sp"
+        app:mTextSizeWeek="17sp"
+        app:mTextSizeDay="17sp"
+        app:mTextSizePre="10sp"
+
+        app:mTextColorMonth="#6E6E6E"
+        app:mTextColorWeek="#aa7a7a"
+        app:mTextColorDay="#A4A4A4"
+        app:mTextColorPreFinish="#5CBB8C"
+        app:mTextColorPreUnFinish="#ff6634"
+        app:mSelectTextColor="#ffffff"
+
+        app:mMonthSpac="8dip"
+        app:mLineSpac="10dip"
+        app:mTextSpac="6dip"
+
+        app:mCurrentBg="#6E6E6E"
+        app:mCurrentBgStrokeWidth="1.5dip"
+        app:mSelectBg="#ff6634"
+        app:mSelectRadius="15dip"
         />
 
-</android.support.constraint.ConstraintLayout>
+</LinearLayout>

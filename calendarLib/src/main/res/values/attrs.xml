@@ -12,7 +12,7 @@
         <attr name="mTextColorDay" format="color" />   <!-- 日期字体颜色 -->
         
         <attr name="mTextColorPreFinish" format="color"/>  <!-- 任务次数 字体颜色 (已完成) -->
-        <attr name="mTextColorPreUnFinsih" format="color"/>  <!-- 任务次数 字体颜色 (未完成)  -->
+        <attr name="mTextColorPreUnFinish" format="color"/>  <!-- 任务次数 字体颜色 (未完成)  -->
         <attr name="mSelectTextColor" format="color" />  <!-- 选中日期 字体颜色 -->
         <attr name="mSelectBg" format="color"/>  <!-- 选中日期背景 -->
         <attr name="mCurrentBg" format="color" />  <!-- 当天日期背景 -->
