@@ -235,13 +235,14 @@ public class CustomCalendarView extends View {
 
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+        Log.i(TAG, "onMeasure() 开始测量过程 ");
         //宽度，填充父窗体
         int widthSize = MeasureSpec.getSize(widthMeasureSpec);
         columnWidth = widthSize/7;
 
         //高度 = 标题高度+星期高度+日期行数+每行高度
         float height = titleHeight + weekHeight + (lineNum*oneHeight);
-        int actualWidth = getDefaultSize(getSuggestedMinimumWidth(), widthSize);
+        int actualWidth = getDefaultSize(getSuggestedMinimumWidth(), widthMeasureSpec);
 
         //debug 信息
         StringBuilder debugSb = new StringBuilder();
@@ -256,13 +257,18 @@ public class CustomCalendarView extends View {
 
         setMeasuredDimension(actualWidth,
                 (int)height);
+        Log.i(TAG, "onMeasure() 测量过程 已经结束了 ");
     }
 
     @Override
     protected void onDraw(Canvas canvas) {
+        Log.i(TAG, "onDraw() 开始 draw 过程");
         drawMonth(canvas);
+        Log.i(TAG, "onDraw() drawMonth 已经走完了");
         drawWeek(canvas);
+        Log.i(TAG, "onDraw() drawWeek 已经走完了");
         drawDayAndPre(canvas);
+        Log.i(TAG, "onDraw() draw过程已经走完了");
     }
 
     //绘制月份
