@@ -452,8 +452,9 @@ public class CustomCalendarView extends View {
     }
 
     /****************************事件处理↓↓↓↓↓↓↓****************************/
+    //焦点坐标
 
-
+    /***********************事件处理  ↑↑↑↑↑↑↑**************************/
 
 
     /***********************接口API↓↓↓↓↓↓↓**************************/
@@ -469,5 +470,23 @@ public class CustomCalendarView extends View {
         }
         invalidate();
     }// end of "setRenwu()"
+
+
+
+    //点击事件
+    private OnCalendarClickListener listener = null;
+    public void setOnClickListener(OnCalendarClickListener listenr){
+        this.listener = listenr;
+    }
+
+    public interface OnCalendarClickListener {
+        void onLeftRowClick();
+        void onRightRowClick();
+        void onTitleClick(String monthStr, Date month);
+        void onWeekClick(String weekIndex, String weekStr);
+        void onDayClick(int day, String dayStr, Helper.DayFinish finish);
+    }
+
+    /***********************接口API↑↑↑↑↑↑↑**************************/
 
 }
