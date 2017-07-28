@@ -9,11 +9,13 @@ import android.graphics.Color;
 import android.graphics.DashPathEffect;
 import android.graphics.Paint;
 import android.graphics.PathEffect;
+import android.graphics.PointF;
 import android.graphics.RectF;
 import android.support.annotation.ColorInt;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 
 import java.text.SimpleDateFormat;
@@ -22,6 +24,8 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import javax.crypto.spec.DESedeKeySpec;
 
 
 /**
@@ -453,7 +457,119 @@ public class CustomCalendarView extends View {
 
     /****************************事件处理↓↓↓↓↓↓↓****************************/
     //焦点坐标
+    private PointF focusPoint = new PointF();
 
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        int action = event.getAction() & MotionEvent.ACTION_MASK;
+        focusPoint.set(event.getX(), event.getY());
+        switch (action){
+            case MotionEvent.ACTION_DOWN:
+                touchFocusMove(focusPoint, false);
+                break;
+            case MotionEvent.ACTION_MOVE:
+                touchFocusMove(focusPoint, false);
+                break;
+            case MotionEvent.ACTION_OUTSIDE:  //??? 为什么outside和 cancel 也需要用呢
+            case MotionEvent.ACTION_CANCEL:
+            case MotionEvent.ACTION_UP:
+                touchFocusMove(focusPoint, true);
+                bringToFront();
+        }
+        return true;
+    }
+
+    //--   焦点滑动  --//
+    public void touchFocusMove(final PointF point, boolean eventEnd){
+        Log.i(TAG, "点击坐标: " + point + ", 事件是否结束 : " + eventEnd);
+
+        if (listener == null){
+            return;
+        }
+
+        // 标题和星期只有在事件结束后才响应
+        if (point.y <= titleHeight){
+            //事件在标题上
+            if (eventEnd){
+                if (point.x>=rowLStart && point.x<(rowLStart+2*mMonthRowSpac+rowWidth)){
+                    Log.i(TAG, "点击左箭头");
+                    listener.onLeftRowClick();
+                }else if (point.x>rowRStart && point.x<(rowRStart + 2*mMonthRowSpac+rowWidth)){
+                    Log.i(TAG, "点击右箭头");
+                    listener.onRightRowClick();
+                }else if (point.x>rowLStart && point.x<rowRStart){
+                    listener.onTitleClick(getMonthStr(month), month);
+                }
+            }
+        }else if (point.y <= (titleHeight+weekHeight)){
+            //事件在星期部分
+            if (eventEnd){
+                // 根据X坐标找到 具体的焦点日期
+                int xIndex = (int)(point.x/columnWidth);
+                Log.i(TAG, "列宽:" + columnWidth + "\t 坐标余数" + xIndex);
+                //Todo 这个计算貌似不太对
+                if ((point.x/columnWidth-xIndex) > 0){
+                    xIndex += 1;
+                }
+                listener.onWeekClick(xIndex-1, WEEK_STR[xIndex-1]);
+            }
+        }else {
+            // 日期部分按下和滑动时重绘, 只有在事件结束后才相应
+            touchDay(point, eventEnd);
+        }
+    }//end of "touchFocusMove()"
+
+    //控制事件是否相应
+    private boolean responseEnd = false;
+    //事件点在 日期区域 范围内
+    private void touchDay(final PointF point, boolean eventEnd){
+        //根据Y坐标 找到焦点行
+        boolean availability = false;  //事件是否 有效
+        //日期部分
+        float top = titleHeight+weekHeight + oneHeight;
+        int foucsLine = 1;
+        while (foucsLine <= lineNum){
+            if (top >= point.y){
+                availability = true;
+                break;
+            }
+            top += oneHeight;
+            foucsLine++;
+        }
+
+        if (availability){
+            //根据X坐标 找到具体的焦点日期
+            int xIndex = (int)(point.x / columnWidth);
+            if ((point.x/columnWidth - xIndex) > 0){
+                xIndex += 1;
+            }
+            Log.i(TAG, "列宽: " + columnWidth + "\t x坐标余数:" + (point.x/columnWidth));
+
+            if (xIndex<=0){
+                xIndex = 1; //避免调到 上一行 最后一个日期
+            }
+
+            if (xIndex>7){
+                xIndex = 7;  //避免调到下一行第一个日期
+            }
+
+            if (foucsLine == 1){
+                //第一行
+                if (xIndex <= firstIndex){
+                    Log.e(TAG, "点到了 空位置");
+
+                    //下面的设置就看不懂了
+                }
+            }
+
+
+        }
+
+    }// end of "touchDay()..."
+
+    private void setSelectedDay(int day, boolean eventEnd){
+
+    }
     /***********************事件处理  ↑↑↑↑↑↑↑**************************/
 
 
@@ -483,7 +599,7 @@ public class CustomCalendarView extends View {
         void onLeftRowClick();
         void onRightRowClick();
         void onTitleClick(String monthStr, Date month);
-        void onWeekClick(String weekIndex, String weekStr);
+        void onWeekClick(int weekIndex, String weekStr);
         void onDayClick(int day, String dayStr, Helper.DayFinish finish);
     }
 
