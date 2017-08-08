@@ -4,12 +4,18 @@ package com.yaoxiaowen.demo;
 import com.yaoxiaowen.calendar.CustomCalendarView;
 import com.yaoxiaowen.calendar.Helper;
 import com.yaoxiaowen.demo.base.BaseActivity;
+import com.yaoxiaowen.demo.log.LogUtils;
+import com.yaoxiaowen.demo.log.ToastUtils;
 
+import java.awt.font.TextAttribute;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 
 public class MainActivity extends BaseActivity {
+
+    private static final String TAG = "MainActivity";
 
 //    List<Helper.DayFinish>
     private List<Helper.DayFinish> list = new ArrayList<>();
@@ -66,6 +72,40 @@ public class MainActivity extends BaseActivity {
 
     @Override
     protected void initListener() {
+        cal.setOnClickListener(new CustomCalendarView.OnCalendarClickListener() {
+            @Override
+            public void onLeftRowClick() {
+                ToastUtils.showToast(getBaseContext(), "点击 左箭头");
+                LogUtils.i(TAG, "点击 左箭头");
+            }
 
+            @Override
+            public void onRightRowClick() {
+                ToastUtils.showToast(getBaseContext(), "点击 右箭头");
+                LogUtils.i(TAG, "点击 右箭头");
+            }
+
+            @Override
+            public void onTitleClick(String monthStr, Date month) {
+                ToastUtils.showToast(getBaseContext(), "点击 title -> monthStr=" + monthStr
+                        + "\t month=" + month);
+                LogUtils.i(TAG, "点击 title -> monthStr=" + monthStr
+                        + "\t month=" + month);
+            }
+
+            @Override
+            public void onWeekClick(int weekIndex, String weekStr) {
+                ToastUtils.showToast(getBaseContext(), "点击 周, weekIndex=" + weekIndex + "\t weekStr=" + weekStr);
+                LogUtils.i(TAG, "点击 周, weekIndex=" + weekIndex + "\t weekStr=" + weekStr);
+            }
+
+            @Override
+            public void onDayClick(int day, String dayStr, Helper.DayFinish finish) {
+                ToastUtils.showToast(getBaseContext(), "点击 日期, day=" +day
+                        + "\t dayStr=" + dayStr + "\t finish=" + finish);
+                LogUtils.i(TAG,  "点击 日期, day=" +day
+                        + "\t dayStr=" + dayStr + "\t finish=" + finish);
+            }
+        });
     }
 }

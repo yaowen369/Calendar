@@ -17,5 +17,14 @@ public class Helper {
             this.all = all;
             this.finish = finish;
         }
+
+        @Override
+        public String toString() {
+            return "DayFinish{" +
+                    "day=" + day +
+                    ", all=" + all +
+                    ", finish=" + finish +
+                    '}';
+        }
     }
 }

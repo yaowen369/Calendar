@@ -559,16 +559,36 @@ public class CustomCalendarView extends View {
                     Log.e(TAG, "点到了 空位置");
 
                     //下面的设置就看不懂了
+                    setSelectedDay(selectDay, eventEnd);
+                }else if (foucsLine == lineNum){
+                    //最后一行
+                    if (xIndex > lastLineNum){
+                        Log.e(TAG, "点到结束空位了");
+                        setSelectedDay(selectDay, true);
+                    }else {
+                        setSelectedDay(firstLineNum + (foucsLine-2)*7, eventEnd);
+                    }
+                }else {
+                    setSelectedDay(firstLineNum + (foucsLine-2)*7+xIndex, eventEnd);
                 }
             }
-
-
+        }else {
+            //超出日期区域后,视为事件结束, 响应最后一个选择日期的回调
+            setSelectedDay(selectDay, true);
         }
 
     }// end of "touchDay()..."
 
     private void setSelectedDay(int day, boolean eventEnd){
+        Log.i(TAG, "选中 " +day + ", 事件是否结束 " +eventEnd );
 
+        selectDay = day;
+        invalidate();
+        if (listener!=null && eventEnd && responseEnd && lastSelectDay!=selectDay){
+            lastSelectDay = selectDay;
+            listener.onDayClick(selectDay, getMonthStr(month)+selectDay + "日", map.get(selectDay));
+        }
+        responseEnd = !eventEnd;
     }
     /***********************事件处理  ↑↑↑↑↑↑↑**************************/
 
