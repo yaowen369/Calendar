@@ -1,4 +1,5 @@
 apply plugin: 'com.android.library'
+apply plugin: 'com.novoda.bintray-release'
 
 android {
     compileSdkVersion 25
@@ -29,4 +30,30 @@ dependencies {
     compile 'com.android.support:appcompat-v7:25.1.0'
     testCompile 'junit:junit:4.12'
 
+}
+
+
+//借鉴 Utils 中的方法
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        //在 as更新到2.3.3, 并且 com.android.tools.build:gradle 也更新到 2.3.3之后，
+        //在Win 7机器上, bintray-release 0.4.0 编译一直错误。类似gradle没有 相关方法的错误。
+        //当更改到 0.5.0之后，才ok
+        //目前尚不清楚 在mac下会怎么样。 等待更进一步的测试
+//        classpath 'com.novoda:bintray-release:0.4.0'
+        classpath 'com.novoda:bintray-release:0.5.0'
+    }
+}
+
+
+publish {
+    userOrg = 'yaowen369'
+    groupId = 'com.yaoxiaowen'
+    artifactId = 'calendar'
+    publishVersion = '0.1.0'
+    desc = 'a Calenar imitate the calendar  in the iphone .'
+    website = 'https://github.com/yaowen369/Calendar'
 }
