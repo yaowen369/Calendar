@@ -6,6 +6,14 @@ import android.graphics.Paint;
  * YaoWen(43194) create at tongcheng work pc,
  * time:  2017/7/17 20:50  qq:2669932513
  */
+
+
+/**
+ * YaoWen(43194) modify  at 2017/12/27 20:42
+ *
+ * 从头开始
+ */
+@Deprecated
 public class FontUtil {
 
     /**

@@ -43,6 +43,11 @@
         app:mCurrentBgStrokeWidth="1.5dip"
         app:mSelectBg="#ff6634"
         app:mSelectRadius="15dip"
+        android:visibility="gone"
         />
+
+    <com.yaoxiaowen.calendar.SimpleCalendarCardView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 
 </LinearLayout>

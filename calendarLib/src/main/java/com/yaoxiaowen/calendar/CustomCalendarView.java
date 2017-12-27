@@ -25,7 +25,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.crypto.spec.DESedeKeySpec;
 
 
 /**
@@ -37,6 +36,13 @@ import javax.crypto.spec.DESedeKeySpec;
  *  http://blog.csdn.net/xmxkf/article/details/51454685
  */
 
+
+/**
+ * YaoWen(43194) modify  at 2017/12/27 20:42
+ *
+ * 从头开始
+ */
+@Deprecated
 public class CustomCalendarView extends View {
 
     private static final String TAG = "CustomCalendarView";
