@@ -54,6 +54,15 @@ public class Calendar implements Serializable {
     /**星期*/
     private int week;
 
+    public Calendar() {
+    }
+
+    public Calendar(int year, int month, int day) {
+        this.year = year;
+        this.month = month;
+        this.day = day;
+    }
+
     public int getYear() {
         return year;
     }
@@ -148,5 +157,21 @@ public class Calendar implements Serializable {
     @Override
     public String toString() {
         return year + "" + (month < 10 ? "0" + month : month) + "" + (day < 10 ? "0" + day : day);
+    }
+
+
+    public String toComplexString() {
+        return "Calendar{" +
+                "year=" + year +
+                ", month=" + month +
+                ", day=" + day +
+                ", isCurrentMonth=" + isCurrentMonth +
+                ", isCurrentDay=" + isCurrentDay +
+                ", lunar='" + lunar + '\'' +
+                ", scheme='" + scheme + '\'' +
+                ", schemeColor=" + schemeColor +
+                ", isWeekend=" + isWeekend +
+                ", week=" + week +
+                '}';
     }
 }

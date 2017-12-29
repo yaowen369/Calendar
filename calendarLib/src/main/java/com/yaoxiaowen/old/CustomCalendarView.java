@@ -1,4 +1,4 @@
-package com.yaoxiaowen.calendar;
+package com.yaoxiaowen.old;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -17,6 +17,8 @@ import android.util.AttributeSet;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
+
+import com.yaoxiaowen.calendar.R;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;

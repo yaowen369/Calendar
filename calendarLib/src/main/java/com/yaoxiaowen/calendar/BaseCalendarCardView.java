@@ -22,11 +22,13 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
+import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Deque;
 import java.util.List;
 
 /**
@@ -35,6 +37,8 @@ import java.util.List;
  */
 
 public abstract class BaseCalendarCardView extends View implements View.OnClickListener {
+    
+    public static final String TAG = "BaseCalendarCardView";
 
     /**
      * 当前月份日期的笔
@@ -279,7 +283,7 @@ public abstract class BaseCalendarCardView extends View implements View.OnClickL
         setOnClickListener(this);
 
         //Todo
-        setCurrentDate(2017, 12);
+        setCurrentDate(2017, 11);
 
     }
 
@@ -321,6 +325,9 @@ public abstract class BaseCalendarCardView extends View implements View.OnClickL
         if (mLineCount == 0)
             return;
         mItemWidth = (getWidth() - mPaddingLeft - mPaddingRight) / 7;
+
+        LogUtils.i(TAG, "onDraw() -> mLineCount=" + mLineCount + "\t mItemWidth=" + mItemWidth);
+
         onPreviewHook();
         int d = 0;
         for (int i = 0; i < mLineCount; i++) {
@@ -329,6 +336,17 @@ public abstract class BaseCalendarCardView extends View implements View.OnClickL
                 int y = i * mItemHeight;
                 onLoopStart(x, y);
                 Calendar calendar = mItems.get(d);
+
+
+                //Todo debugInfo
+                LogUtils.i(TAG, "onDraw() -> i=" + i + " j=" + j + " x=" + x + " y=" + y);
+                LogUtils.i(TAG, "onDraw() ->  calendar=" + calendar.toComplexString());
+
+//                //Todo yaowen add
+//                if (!calendar.isCurrentMonth()){
+//                    continue;
+//                }
+
                 mCurMonthLunarTextPaint.setColor(mCurMonthLunarTextColor);
                 mOtherMonthLunarTextPaint.setColor(mOtherMonthLunarTextColor);
                 boolean isSelected = d == mCurrentItem;
@@ -543,7 +561,20 @@ public abstract class BaseCalendarCardView extends View implements View.OnClickL
 //            calendarDate.setLunar(LunarCalendar.getLunarText(calendarDate.getYear(), calendarDate.getMonth(), calendarDate.getDay()));
             mItems.add(calendarDate);
         }
+
+
+        //Todo yaowen 测试数据不对, 我们重新添加测试数据
+        mItems.clear();
+        for (int i=0; i<30; i++){
+            Calendar calendar = new Calendar(2017, 12, i);
+            mItems.add(calendar);
+        }
+
+
         mLineCount = mItems.size() / 7;
+        LogUtils.i(TAG, "initCalendar() -> mLineCount=" + mLineCount);
+        LogUtils.i(TAG, "initCalendar() -> mItems = " + mItems);
+        
         if (mSchemes != null) {
             for (Calendar a : mItems) {
                 for (Calendar d : mSchemes) {

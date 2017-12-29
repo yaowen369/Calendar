@@ -11,6 +11,8 @@ import android.util.AttributeSet;
  */
 
 public class SimpleCalendarCardView extends BaseCalendarCardView {
+    
+    public static final String TAG = "SimpleCalendarCardView";
 
     private int mRadius;
 
@@ -51,7 +53,13 @@ public class SimpleCalendarCardView extends BaseCalendarCardView {
     protected void onDrawText(Canvas canvas, Calendar calendar, int x, int y, boolean hasScheme, boolean isSelected) {
         float baselineY = mTextBaseLine + y;
         int cx = x + mItemWidth / 2;
+
+        //Todo debugInfo
+        StringBuilder sb = new StringBuilder();
+        sb.append("onDrawText()-> cx=" + cx + "  baselineY=" + baselineY + "  calendar=" + calendar);
+
         if (hasScheme) {
+           sb.append("  ---1111---- ");
             canvas.drawText(String.valueOf(calendar.getDay()),
                     cx,
                     baselineY,
@@ -59,9 +67,12 @@ public class SimpleCalendarCardView extends BaseCalendarCardView {
                             calendar.isCurrentMonth() ? mSchemeTextPaint : mOtherMonthTextPaint);
 
         } else {
+            sb.append("  ---2222---- ");
             canvas.drawText(String.valueOf(calendar.getDay()), cx, baselineY,
                     calendar.isCurrentDay() ? mCurDayTextPaint :
                             calendar.isCurrentMonth() ? mCurMonthTextPaint : mOtherMonthTextPaint);
         }
-    }
+
+        LogUtils.i(TAG, sb.toString());
+    }//end of "onDrawText(...)"
 }
