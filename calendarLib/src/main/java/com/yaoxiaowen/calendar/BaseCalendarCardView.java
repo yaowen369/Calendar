@@ -61,7 +61,7 @@ public abstract class BaseCalendarCardView extends View implements View.OnClickL
     protected Paint mOtherMonthLunarTextPaint = new Paint();
 
     /**
-     * 标记的日期问爸爸颜色
+     * 标记的日期,标记部分背景颜色
      */
     protected Paint mSchemePaint = new Paint();
 
@@ -227,13 +227,6 @@ public abstract class BaseCalendarCardView extends View implements View.OnClickL
      */
     private void initPaint(Context context) {
 
-        /**
-         * YaoWen(43194) modify  at 2017/12/27 21:06
-         * add Todo
-         * 因为这个变量 没有初始化
-         */
-
-        mItemHeight = Util.dipToPx(context, 10);
 
         mCurMonthTextPaint.setAntiAlias(true);
         mCurMonthTextPaint.setTextAlign(Paint.Align.CENTER);
@@ -279,10 +272,6 @@ public abstract class BaseCalendarCardView extends View implements View.OnClickL
         mPaddingRight = Util.dipToPx(context, 8);
 
         setOnClickListener(this);
-
-        //Todo
-        setCurrentDate(2017, 11);
-        mTextBaseLine = Util.dipToPx(context, 20);
 
     }
 
@@ -340,10 +329,6 @@ public abstract class BaseCalendarCardView extends View implements View.OnClickL
                 LogUtils.i(TAG, "onDraw() -> i=" + i + " j=" + j + " x=" + x + " y=" + y);
                 LogUtils.i(TAG, "onDraw() ->  calendar=" + calendar.toComplexString());
 
-//                //Todo yaowen add
-//                if (!calendar.isCurrentMonth()){
-//                    continue;
-//                }
 
                 mCurMonthLunarTextPaint.setColor(mCurMonthLunarTextColor);
                 mOtherMonthLunarTextPaint.setColor(mOtherMonthLunarTextColor);
@@ -506,6 +491,8 @@ public abstract class BaseCalendarCardView extends View implements View.OnClickL
         int preYear, preMonth;
         int nextYear, nextMonth;
 
+        //Todo  这个地方始终是6行，其实是有bug的
+        //未来可以修正该问题。
         int size = 42;
 
         int preMonthDaysCount;
@@ -555,19 +542,9 @@ public abstract class BaseCalendarCardView extends View implements View.OnClickL
             }
             calendarDate.setWeekend(Util.isWeekend(calendarDate));
             calendarDate.setWeek(Util.getWeekFormCalendar(calendarDate));
-            //Todo
-//            calendarDate.setLunar(LunarCalendar.getLunarText(calendarDate.getYear(), calendarDate.getMonth(), calendarDate.getDay()));
+            calendarDate.setLunar(LunarCalendar.getLunarText(calendarDate.getYear(), calendarDate.getMonth(), calendarDate.getDay()));
             mItems.add(calendarDate);
         }
-
-
-        //Todo yaowen 测试数据不对, 我们重新添加测试数据
-        mItems.clear();
-        for (int i=0; i<30; i++){
-            Calendar calendar = new Calendar(2017, 12, i);
-            mItems.add(calendar);
-        }
-
 
         mLineCount = mItems.size() / 7;
         LogUtils.i(TAG, "initCalendar() -> mLineCount=" + mLineCount);
@@ -605,10 +582,9 @@ public abstract class BaseCalendarCardView extends View implements View.OnClickL
 
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-        //Todo yaowen delete,后期应该加上
-//        if (mLineCount != 0) {
-//            heightMeasureSpec = MeasureSpec.makeMeasureSpec(mItemHeight * mLineCount, MeasureSpec.EXACTLY);
-//        }
+        if (mLineCount != 0) {
+            heightMeasureSpec = MeasureSpec.makeMeasureSpec(mItemHeight * mLineCount, MeasureSpec.EXACTLY);
+        }
 
         LogUtils.i(TAG, "onMeasure() -> widthMeasureSpec="
                 + MeasureSpec.toString(widthMeasureSpec)
@@ -630,7 +606,7 @@ public abstract class BaseCalendarCardView extends View implements View.OnClickL
      * 2、绘制矩形选中效果，也可以在这里计算矩形宽和高
      */
     protected void onPreviewHook() {
-        // TODO: 2017/11/16
+
     }
 
 
@@ -642,7 +618,7 @@ public abstract class BaseCalendarCardView extends View implements View.OnClickL
      * @param y 日历Card y起点坐标
      */
     protected void onLoopStart(int x, int y) {
-        // TODO: 2017/11/16  
+
     }
 
     /**

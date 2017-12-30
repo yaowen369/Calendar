@@ -101,8 +101,7 @@ public class CalendarView extends FrameLayout {
 
         this.mLinearWeek = (LinearLayout) findViewById(R.id.ll_week);
         mSelectLayout = (MonthSelectLayout) findViewById(R.id.selectLayout);
-        //Todo 测试，临时删除
-//        mLinearWeek.setBackgroundColor(mDelegate.getWeekBackground());
+        mLinearWeek.setBackgroundColor(mDelegate.getWeekBackground());
         for (int i = 0; i < mLinearWeek.getChildCount(); i++) {
             ((TextView) mLinearWeek.getChildAt(i)).setTextColor(mDelegate.getWeekTextColor());
         }
