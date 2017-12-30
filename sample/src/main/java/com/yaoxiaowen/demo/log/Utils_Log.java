@@ -15,7 +15,7 @@ import android.util.Log;
  *  因为v,d级别的log,本工具中使用了  Deprecated 标记
  */
 
-public class LogUtils {
+public class Utils_Log {
 
     public static final String PREFIX = "weny ";
 
@@ -153,7 +153,7 @@ public class LogUtils {
             classNameSb.delete(0, classNameSb.length());
             classNameSb.append(element.getClassName());
             if (classNameSb.indexOf("com.yaoxiaowen.android.sample")>=0
-                    && !classNameSb.toString().contains("LogUtils")){
+                    && !classNameSb.toString().contains("Utils_Log")){
                 int index = classNameSb.lastIndexOf(".");
                 sb.append(classNameSb.subSequence(index+1, classNameSb.length()));
                 sb.append(" ");

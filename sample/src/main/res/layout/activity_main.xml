@@ -14,42 +14,53 @@
         <!--android:text="测试TextView "-->
         <!--/>-->
 
-    <com.yaoxiaowen.old.CustomCalendarView
-        android:id="@+id/cal"
+    <!--<com.yaoxiaowen.old.CustomCalendarView-->
+        <!--android:id="@+id/cal"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"-->
+
+        <!--app:mMonthRowL="@drawable/custom_calendar_row_left"-->
+        <!--app:mMonthRowR="@drawable/custom_calendar_row_right"-->
+        <!--app:mMonthRowSpac="20dip"-->
+
+        <!--app:mTextSizeMonth="22sp"-->
+        <!--app:mTextSizeWeek="17sp"-->
+        <!--app:mTextSizeDay="17sp"-->
+        <!--app:mTextSizePre="10sp"-->
+
+        <!--app:mTextColorMonth="#6E6E6E"-->
+        <!--app:mTextColorWeek="#aa7a7a"-->
+        <!--app:mTextColorDay="#A4A4A4"-->
+        <!--app:mTextColorPreFinish="#5CBB8C"-->
+        <!--app:mTextColorPreUnFinish="#ff6634"-->
+        <!--app:mSelectTextColor="#ffffff"-->
+
+        <!--app:mMonthSpac="8dip"-->
+        <!--app:mLineSpac="10dip"-->
+        <!--app:mTextSpac="6dip"-->
+
+        <!--app:mCurrentBg="#6E6E6E"-->
+        <!--app:mCurrentBgStrokeWidth="1.5dip"-->
+        <!--app:mSelectBg="#ff6634"-->
+        <!--app:mSelectRadius="15dip"-->
+        <!--android:visibility="gone"-->
+        <!--/>-->
+
+    <!--<com.yaoxiaowen.calendar.SimpleCalendarCardView-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="400dp"-->
+        <!--android:layout_marginTop="50dp"-->
+        <!--android:visibility="gone"-->
+        <!--/>-->
+
+    <!--<CalendarView-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"/>-->
+
+    <com.yaoxiaowen.calendar.CalendarView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="match_parent"/>
 
-        app:mMonthRowL="@drawable/custom_calendar_row_left"
-        app:mMonthRowR="@drawable/custom_calendar_row_right"
-        app:mMonthRowSpac="20dip"
 
-        app:mTextSizeMonth="22sp"
-        app:mTextSizeWeek="17sp"
-        app:mTextSizeDay="17sp"
-        app:mTextSizePre="10sp"
-
-        app:mTextColorMonth="#6E6E6E"
-        app:mTextColorWeek="#aa7a7a"
-        app:mTextColorDay="#A4A4A4"
-        app:mTextColorPreFinish="#5CBB8C"
-        app:mTextColorPreUnFinish="#ff6634"
-        app:mSelectTextColor="#ffffff"
-
-        app:mMonthSpac="8dip"
-        app:mLineSpac="10dip"
-        app:mTextSpac="6dip"
-
-        app:mCurrentBg="#6E6E6E"
-        app:mCurrentBgStrokeWidth="1.5dip"
-        app:mSelectBg="#ff6634"
-        app:mSelectRadius="15dip"
-        android:visibility="gone"
-        />
-
-    <com.yaoxiaowen.calendar.SimpleCalendarCardView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="50dp"
-        />
 
 </LinearLayout>

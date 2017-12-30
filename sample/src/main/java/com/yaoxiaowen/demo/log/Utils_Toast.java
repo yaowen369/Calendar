@@ -11,7 +11,7 @@ import android.widget.Toast;
  * www.yaoxiaowen.com
  */
 
-public class ToastUtils {
+public class Utils_Toast {
 
     public static void showToast(Context context, String msg){
         Toast.makeText(context, msg, Toast.LENGTH_SHORT)
