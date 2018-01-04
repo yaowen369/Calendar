@@ -399,38 +399,39 @@ public abstract class BaseCalendarCardView extends View implements View.OnClickL
     //Todo
     @Override
     public void onClick(View v) {
-//        if (isClick) {
-//            Calendar calendar = getIndex();
-//            if (calendar != null) {
-//
-//                if (!calendar.isCurrentMonth() && mParentLayout != null) {
-//                    int cur = mParentLayout.mViewPager.getCurrentItem();
-//                    int position = mCurrentItem < 7 ? cur - 1 : cur + 1;
-//                    mParentLayout.mViewPager.setCurrentItem(position);
-//                }
-//
-//                if (mInnerListener != null) {
-//                    mInnerListener.onDateSelected(calendar);
-//                }
-//
-//                if (mParentLayout != null ) {
-//                    if(calendar.isCurrentMonth()){
-//                        mParentLayout.setSelectPosition(mItems.indexOf(calendar));
-//                    }else {
-//                        mParentLayout.setSelectWeek(Util.getWeekFromDayInMonth(calendar));
-//                    }
-//
-//                }
-//
-//                if (mDateSelectedListener != null) {
-//                    mDateSelectedListener.onDateSelected(calendar);
-//                }
-//                if (mListener != null) {
-//                    mListener.onDateChange(calendar);
-//                }
-//                invalidate();
-//            }
-//        }
+        if (isClick) {
+            Calendar calendar = getIndex();
+            LogUtils.i(TAG, "onClick() -> 点击日期=" + calendar);
+            if (calendar != null) {
+
+                if (!calendar.isCurrentMonth() && mParentLayout != null) {
+                    int cur = mParentLayout.mViewPager.getCurrentItem();
+                    int position = mCurrentItem < 7 ? cur - 1 : cur + 1;
+                    mParentLayout.mViewPager.setCurrentItem(position);
+                }
+
+                if (mInnerListener != null) {
+                    mInnerListener.onDateSelected(calendar);
+                }
+
+                if (mParentLayout != null ) {
+                    if(calendar.isCurrentMonth()){
+                        mParentLayout.setSelectPosition(mItems.indexOf(calendar));
+                    }else {
+                        mParentLayout.setSelectWeek(Util.getWeekFromDayInMonth(calendar));
+                    }
+
+                }
+
+                if (mDateSelectedListener != null) {
+                    mDateSelectedListener.onDateSelected(calendar);
+                }
+                if (mListener != null) {
+                    mListener.onDateChange(calendar);
+                }
+                invalidate();
+            }
+        }
     }
 
     private Calendar getIndex() {

@@ -297,7 +297,6 @@ class LunarCalendar {
     }
 
     /**
-     * y
      * 传回农历year年month月的总天数
      *
      * @param year  要计算的年份

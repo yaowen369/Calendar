@@ -73,6 +73,11 @@ public class SimpleCalendarCardView extends BaseCalendarCardView {
                             calendar.isCurrentMonth() ? mCurMonthTextPaint : mOtherMonthTextPaint);
         }
 
+
+        // YaoWen(43194) modify  at 2018/1/3 21:16
+        //绘制农历，后来新添加
+        canvas.drawText(calendar.getLunar(), cx, mTextBaseLine + y + mItemHeight / 10, mCurMonthLunarTextPaint);
+
         LogUtils.i(TAG, sb.toString());
     }//end of "onDrawText(...)"
 }
