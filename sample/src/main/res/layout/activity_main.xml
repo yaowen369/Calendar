@@ -8,72 +8,86 @@
     android:orientation="vertical"
     >
 
-    <!--<TextView-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:text="测试TextView "-->
-        <!--/>-->
-
-    <!--<com.yaoxiaowen.old.CustomCalendarView-->
-        <!--android:id="@+id/cal"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="match_parent"-->
-
-        <!--app:mMonthRowL="@drawable/custom_calendar_row_left"-->
-        <!--app:mMonthRowR="@drawable/custom_calendar_row_right"-->
-        <!--app:mMonthRowSpac="20dip"-->
-
-        <!--app:mTextSizeMonth="22sp"-->
-        <!--app:mTextSizeWeek="17sp"-->
-        <!--app:mTextSizeDay="17sp"-->
-        <!--app:mTextSizePre="10sp"-->
-
-        <!--app:mTextColorMonth="#6E6E6E"-->
-        <!--app:mTextColorWeek="#aa7a7a"-->
-        <!--app:mTextColorDay="#A4A4A4"-->
-        <!--app:mTextColorPreFinish="#5CBB8C"-->
-        <!--app:mTextColorPreUnFinish="#ff6634"-->
-        <!--app:mSelectTextColor="#ffffff"-->
-
-        <!--app:mMonthSpac="8dip"-->
-        <!--app:mLineSpac="10dip"-->
-        <!--app:mTextSpac="6dip"-->
-
-        <!--app:mCurrentBg="#6E6E6E"-->
-        <!--app:mCurrentBgStrokeWidth="1.5dip"-->
-        <!--app:mSelectBg="#ff6634"-->
-        <!--app:mSelectRadius="15dip"-->
-        <!--android:visibility="gone"-->
-        <!--/>-->
-
-    <!--<com.yaoxiaowen.calendar.SimpleCalendarCardView-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="400dp"-->
-        <!--android:layout_marginTop="50dp"-->
-        <!--android:visibility="gone"-->
-        <!--/>-->
-
-    <!--<CalendarView-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="match_parent"/>-->
-
-    <com.yaoxiaowen.calendar.CalendarView
+    <com.yaoxiaowen.calendar.CalendarLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:calendar_height="46dp"
-        app:current_month_text_color="#333333"
-        app:current_month_lunar_text_color="#CFCFCF"
-        app:min_year="2004"
-        app:other_month_text_color="#e1e1e1"
-        app:scheme_text="假"
-        app:scheme_text_color="#333"
-        app:scheme_theme_color="#333"
-        app:selected_text_color="#fff"
-        app:selected_theme_color="#333"
-        app:week_background="#fff"
-        app:week_text_color="#111"
-        />
+        android:background="#fff"
+        android:orientation="vertical"
+        app:calendar_content_view_id="@+id/linearView"
+        >
 
+        <com.yaoxiaowen.calendar.CalendarView
+            android:id="@+id/myCalendarView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:calendar_height="46dp"
+            app:current_month_text_color="#333333"
+            app:current_month_lunar_text_color="#CFCFCF"
+            app:min_year="2004"
+            app:other_month_text_color="#e1e1e1"
+            app:scheme_text="假"
+            app:scheme_text_color="#333"
+            app:scheme_theme_color="#333"
+            app:selected_text_color="#fff"
+            app:selected_theme_color="#333"
+            app:week_background="#fff"
+            app:week_text_color="#111"
+            />
+
+
+        <LinearLayout
+            android:id="@+id/linearView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/content_background"
+            android:clickable="true"
+            android:orientation="vertical"
+            android:paddingBottom="16dp"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:paddingTop="16dp"
+            tools:ignore="KeyboardInaccessibleWidget"
+            >
+
+            <TextView
+                android:text="星期天"
+                android:textColor="#3bc2ef"
+                android:textStyle="bold"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="40sp" />
+
+            <TextView
+                android:text="SUNDAY"
+                android:textColor="#3bc2ef"
+                android:textStyle="bold"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="30sp" />
+
+            <TextView
+                android:text="不加班"
+                android:textColor="#3bc2ef"
+                android:textStyle="bold"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="30sp" />
+
+            <TextView
+                android:text="周末"
+                android:textColor="#d1d5d6"
+                android:textStyle="bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="130sp" />
+        </LinearLayout>
+    </com.yaoxiaowen.calendar.CalendarLayout>
 
 
 </LinearLayout>

@@ -17,7 +17,7 @@ import android.util.Log;
 
 public class Utils_Log {
 
-    public static final String PREFIX = "weny ";
+    public static final String PREFIX = "wenySam ";
 
     /**
      *  Log.v 级别,TAG使用调用栈中计算出的的TAG, 形式:PREFIX + className + methodName() + lineNum

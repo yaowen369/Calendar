@@ -45,7 +45,7 @@ import java.util.Map;
  * 从头开始
  */
 @Deprecated
-public class CustomCalendarView extends View {
+class CustomCalendarView extends View {
 
     private static final String TAG = "CustomCalendarView";
 

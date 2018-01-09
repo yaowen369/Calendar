@@ -11,7 +11,7 @@ package com.yaoxiaowen.old;
  * 从头开始
  */
 @Deprecated
-public class Helper {
+class Helper {
 
 
 

@@ -14,7 +14,7 @@ import android.graphics.Paint;
  * 从头开始
  */
 @Deprecated
-public class FontUtil {
+class FontUtil {
 
     /**
      * 返回在 paint画笔下, str 的长度

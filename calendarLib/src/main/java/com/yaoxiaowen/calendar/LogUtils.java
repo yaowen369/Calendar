@@ -15,10 +15,10 @@ import android.util.Log;
  *  因此v,d级别的log,本工具中使用了  Deprecated 标记
  */
 
-public class LogUtils {
+class LogUtils {
 
     //Todo 这两个值，记得进行修改
-    public static final String PREFIX = "weny ";
+    public static final String PREFIX = "wenyLib ";
     private static boolean debug = true;
 
     public static void setDebug(boolean b){
