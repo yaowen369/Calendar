@@ -42,7 +42,7 @@ public abstract class WeekView extends View implements View.OnClickListener {
     protected Paint mOtherMonthLunarTextPaint = new Paint();
 
     /**
-     * 标记的日期问爸爸颜色
+     * 标记的日期颜色
      */
     protected Paint mSchemePaint = new Paint();
 

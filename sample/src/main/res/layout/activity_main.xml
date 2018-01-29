@@ -23,6 +23,7 @@
             app:calendar_height="46dp"
             app:current_month_text_color="#333333"
             app:current_month_lunar_text_color="#CFCFCF"
+            app:week_view="com.yaoxiaowen.calendar.SimpleWeekView"
             app:min_year="2004"
             app:other_month_text_color="#e1e1e1"
             app:scheme_text="假"
@@ -39,7 +40,7 @@
             android:id="@+id/linearView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/content_background"
+            android:background="@android:color/holo_red_dark"
             android:clickable="true"
             android:orientation="vertical"
             android:paddingBottom="16dp"
@@ -47,46 +48,8 @@
             android:paddingRight="16dp"
             android:paddingTop="16dp"
             tools:ignore="KeyboardInaccessibleWidget"
-            >
+            />
 
-            <TextView
-                android:text="星期天"
-                android:textColor="#3bc2ef"
-                android:textStyle="bold"
-                android:layout_marginLeft="16dp"
-                android:layout_marginRight="16dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="40sp" />
-
-            <TextView
-                android:text="SUNDAY"
-                android:textColor="#3bc2ef"
-                android:textStyle="bold"
-                android:layout_marginLeft="16dp"
-                android:layout_marginRight="16dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="30sp" />
-
-            <TextView
-                android:text="不加班"
-                android:textColor="#3bc2ef"
-                android:textStyle="bold"
-                android:layout_marginLeft="16dp"
-                android:layout_marginRight="16dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="30sp" />
-
-            <TextView
-                android:text="周末"
-                android:textColor="#d1d5d6"
-                android:textStyle="bold"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="130sp" />
-        </LinearLayout>
     </com.yaoxiaowen.calendar.CalendarLayout>
 
 
