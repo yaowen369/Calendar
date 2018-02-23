@@ -13,17 +13,15 @@
         android:layout_height="match_parent"
         android:background="#fff"
         android:orientation="vertical"
-        app:calendar_content_view_id="@+id/linearView"
-        >
+        app:calendar_content_view_id="@+id/linearView">
 
         <com.yaoxiaowen.calendar.CalendarView
             android:id="@+id/myCalendarView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:calendar_height="46dp"
-            app:current_month_text_color="#333333"
             app:current_month_lunar_text_color="#CFCFCF"
-            app:week_view="com.yaoxiaowen.calendar.SimpleWeekView"
+            app:current_month_text_color="#333333"
             app:min_year="2004"
             app:other_month_text_color="#e1e1e1"
             app:scheme_text="假"
@@ -33,14 +31,14 @@
             app:selected_theme_color="#333"
             app:week_background="#fff"
             app:week_text_color="#111"
-            />
+            app:week_view="com.yaoxiaowen.calendar.SimpleWeekView" />
 
 
         <LinearLayout
             android:id="@+id/linearView"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@android:color/holo_red_dark"
+            android:layout_height="0dp"
+            android:layout_weight="1"
             android:clickable="true"
             android:orientation="vertical"
             android:paddingBottom="16dp"
@@ -48,7 +46,17 @@
             android:paddingRight="16dp"
             android:paddingTop="16dp"
             tools:ignore="KeyboardInaccessibleWidget"
-            />
+            android:background="#FFFF00"
+            >
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="top"
+                android:textSize="30dp"
+                android:textColor="@android:color/holo_red_light"
+                android:text="新的一年发大财" />
+        </LinearLayout>
 
     </com.yaoxiaowen.calendar.CalendarLayout>
 

@@ -1,5 +1,10 @@
 # Calendar
-自定义的日历控件，模仿iphone上官方默认的日历界面和效果
+自定义的日历控件
+
+> 计划包含月视图，周视图等
+
+## 效果图
+![demo](https://github.com/yaowen369/Calendar/blob/master/document/img/calendar_0223.gif)
 
 
 ## 依赖
